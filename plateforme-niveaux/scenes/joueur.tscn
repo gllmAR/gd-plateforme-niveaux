@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://b8rri5a137hlb" path="res://assets/spritesheets/spritesheet-characters-default.png" id="1_r36ky"]
 [ext_resource type="Script" uid="uid://c6f6th35eu1tn" path="res://scripts/joueur.gd" id="1_uj1k6"]
-[ext_resource type="AudioStream" uid="uid://jumpsound" path="res://assets/sounds/sfx_jump.ogg" id="3_jump"]
+[ext_resource type="AudioStream" path="res://assets/sounds/sfx_jump.ogg" id="3_jump"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_uj1k6"]
 atlas = ExtResource("1_r36ky")
