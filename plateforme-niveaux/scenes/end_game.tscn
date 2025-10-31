@@ -1,4 +1,7 @@
-[gd_scene format=3 uid="uid://dwvq0v5nu4niq"]
+[gd_scene load_steps=3 format=3 uid="uid://dwvq0v5nu4niq"]
+
+[ext_resource type="PackedScene" uid="uid://dscroh4yyuxie" path="res://scenes/exemples-final/hud_final.tscn" id="1_uwdrl"]
+[ext_resource type="PackedScene" uid="uid://j05okgtuaimk" path="res://scenes/menu_controle.tscn" id="2_0py74"]
 
 [node name="EndGameScreen" type="Control"]
 layout_mode = 3
@@ -20,3 +23,18 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "End Game"
 horizontal_alignment = 1
+
+[node name="HUD" parent="." instance=ExtResource("1_uwdrl")]
+
+[node name="MenuControle" parent="." instance=ExtResource("2_0py74")]
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 454.0
+offset_top = 263.0
+offset_right = 571.0
+offset_bottom = 411.0
+theme_override_font_sizes/font_size = 100
+text = "🗘"
+
+[connection signal="button_down" from="Button" to="MenuControle" method="_on_button_button_down"]

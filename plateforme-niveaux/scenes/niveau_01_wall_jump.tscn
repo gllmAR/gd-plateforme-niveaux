@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://b2686s3s4sfad"]
+[gd_scene load_steps=14 format=4 uid="uid://b2686s3s4sfad"]
 
 [ext_resource type="PackedScene" uid="uid://dscroh4yyuxie" path="res://scenes/exemples-final/hud_final.tscn" id="1_e52v2"]
 [ext_resource type="Texture2D" uid="uid://bayntyuvnohmg" path="res://assets/gradient_jaune_mauve.tres" id="1_sbilw"]
@@ -9,10 +9,13 @@
 [ext_resource type="PackedScene" uid="uid://j05okgtuaimk" path="res://scenes/menu_controle.tscn" id="10_rm66m"]
 [ext_resource type="PackedScene" uid="uid://dirydc1jhbrdb" path="res://scenes/joueur.tscn" id="10_uqc8o"]
 [ext_resource type="Script" uid="uid://cnf4o5qr4x1by" path="res://scripts/controle_camera.gd" id="11_f2s81"]
+[ext_resource type="PackedScene" uid="uid://w6tman5bqiei" path="res://scenes/killzone.tscn" id="11_w326i"]
 [ext_resource type="Script" uid="uid://bduvelojw5swt" path="res://scripts/porte_niveau.gd" id="13_502yv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_danug"]
 size = Vector2(25, 53)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_07qt4"]
 
 [node name="Niveau01" type="Node"]
 
@@ -64,24 +67,32 @@ script = ExtResource("11_f2s81")
 tile_map_data = PackedByteArray("AAD+/w0AAAAAAAUAAAD//w0AAAAAAAUAAAAAAA0AAAAAAAUAAAABAA0AAAAAAAUAAAACAA0AAAAAAAUAAAADAA0AAAAAAAUAAAAEAA0AAAAAAAUAAAAFAA0AAAAAAAUAAAAGAA0AAAAAAAUAAAAHAA0AAAAAAAUAAAAIAA0AAAAAAAUAAAAJAA0AAAAAAAUAAAAKAA0AAAAAAAUAAAALAA0AAAAAAAUAAAAMAA0AAAAAAAUAAAANAA0AAAAAAAUAAAAOAA0AAAAAAAUAAAD+/wwAAAAAAAQAAAD//wwAAAAAAAQAAAAAAAwAAAAAAAQAAAABAAwAAAAAAAQAAAACAAwAAAAAAAQAAAADAAwAAAAAAAQAAAAEAAwAAAAAAAQAAAAFAAwAAAAAAAQAAAAGAAwAAAAAAAQAAAAHAAwAAAAAAAQAAAAIAAwAAAAAAAQAAAAJAAwAAAAAAAQAAAAKAAwAAAAAAAQAAAALAAwAAAAAAAQAAAAMAAwAAAAAAAQAAAANAAwAAAAAAAQAAAAOAAwAAAAAAAQAAAAPAAwAAAAAAAQAAAAPAA0AAAAAAAUAAAAQAAwAAAAAAAQAAAAQAA0AAAAAAAUAAAARAAwAAAAAAAQAAAARAA0AAAAAAAUAAAASAAwAAAAAAAQAAAASAA0AAAAAAAUAAAATAAwAAAAAAAQAAAATAA0AAAAAAAUAAAAUAAwAAAAAAAQAAAAUAA0AAAAAAAUAAAAVAAwAAAAAAAQAAAAVAA0AAAAAAAUAAAAWAAwAAAAAAAQAAAAWAA0AAAAAAAUAAAAXAAwAAAAAAAQAAAAXAA0AAAAAAAUAAAAYAAwAAAAAAAQAAAAYAA0AAAAAAAUAAAAZAAwAAAAAAAQAAAAZAA0AAAAAAAUAAAAaAAwAAAAAAAQAAAAaAA0AAAAAAAUAAAA=")
 tile_set = ExtResource("8_aujc2")
 
-[node name="Monnaie" parent="." instance=ExtResource("9_e52v2")]
+[node name="monnaies" type="Node2D" parent="."]
+
+[node name="Monnaie" parent="monnaies" instance=ExtResource("9_e52v2")]
 position = Vector2(1187, 114)
 
-[node name="Monnaie2" parent="." instance=ExtResource("9_e52v2")]
+[node name="Monnaie2" parent="monnaies" instance=ExtResource("9_e52v2")]
 position = Vector2(793, 344)
 
-[node name="Monnaie3" parent="." instance=ExtResource("9_e52v2")]
+[node name="Monnaie3" parent="monnaies" instance=ExtResource("9_e52v2")]
 position = Vector2(602, 620)
 
-[node name="Monnaie4" parent="." instance=ExtResource("9_e52v2")]
+[node name="Monnaie4" parent="monnaies" instance=ExtResource("9_e52v2")]
 position = Vector2(1239, 663)
 
-[node name="Monnaie5" parent="." instance=ExtResource("9_e52v2")]
+[node name="Monnaie5" parent="monnaies" instance=ExtResource("9_e52v2")]
 position = Vector2(1574, 462)
 
-[node name="Monnaie6" parent="." instance=ExtResource("9_e52v2")]
+[node name="Monnaie6" parent="monnaies" instance=ExtResource("9_e52v2")]
 position = Vector2(93, 546)
 
 [node name="MenuControle" parent="." instance=ExtResource("10_rm66m")]
+
+[node name="Killzone" parent="." instance=ExtResource("11_w326i")]
+position = Vector2(-102, 894)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_07qt4")
 
 [connection signal="body_entered" from="PorteNiveau" to="PorteNiveau" method="_on_body_entered"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://bgd2mer30cim4"]
+[gd_scene load_steps=15 format=4 uid="uid://bgd2mer30cim4"]
 
 [ext_resource type="Texture2D" uid="uid://v5g6yauly3wd" path="res://assets/gradient_vert_bleu.tres" id="1_pcvo2"]
 [ext_resource type="Script" uid="uid://bduvelojw5swt" path="res://scripts/porte_niveau.gd" id="2_rdxbm"]
@@ -11,9 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://dscroh4yyuxie" path="res://scenes/exemples-final/hud_final.tscn" id="9_y4csj"]
 [ext_resource type="PackedScene" uid="uid://hi7t64ijaxck" path="res://scenes/monnaie.tscn" id="10_3hkp0"]
 [ext_resource type="PackedScene" uid="uid://j05okgtuaimk" path="res://scenes/menu_controle.tscn" id="11_htidv"]
+[ext_resource type="PackedScene" uid="uid://w6tman5bqiei" path="res://scenes/killzone.tscn" id="12_r4l43"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_danug"]
 size = Vector2(25, 53)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_r4l43"]
 
 [node name="Niveau00" type="Node"]
 
@@ -69,6 +72,13 @@ script = ExtResource("8_y0sra")
 position = Vector2(538, 178)
 
 [node name="MenuControle" parent="." instance=ExtResource("11_htidv")]
+
+[node name="Killzone" parent="." instance=ExtResource("12_r4l43")]
+position = Vector2(-21, 777)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+position = Vector2(437.5, 42.5)
+shape = SubResource("WorldBoundaryShape2D_r4l43")
 
 [connection signal="body_entered" from="PorteNiveau" to="PorteNiveau" method="_on_body_entered"]
 [connection signal="body_entered" from="PanneauMessage" to="PanneauMessage" method="show_message"]

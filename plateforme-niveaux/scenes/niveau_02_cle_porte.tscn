@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dy0v8872jlfyb"]
+[gd_scene load_steps=16 format=4 uid="uid://dy0v8872jlfyb"]
 
 [ext_resource type="PackedScene" uid="uid://dscroh4yyuxie" path="res://scenes/exemples-final/hud_final.tscn" id="1_d266p"]
 [ext_resource type="Texture2D" uid="uid://dgormgu72os8q" path="res://assets/gradient_jaune_rouge.tres" id="2_vwm7x"]
@@ -12,9 +12,12 @@
 [ext_resource type="PackedScene" uid="uid://j05okgtuaimk" path="res://scenes/menu_controle.tscn" id="11_rvs65"]
 [ext_resource type="PackedScene" uid="uid://dytpja2qcbap4" path="res://scenes/cle.tscn" id="12_ao7hb"]
 [ext_resource type="PackedScene" uid="uid://bomh7koi041an" path="res://scenes/obstacle_verrouille.tscn" id="12_mmh6l"]
+[ext_resource type="PackedScene" uid="uid://w6tman5bqiei" path="res://scenes/killzone.tscn" id="13_ao7hb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_danug"]
 size = Vector2(25, 53)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tionb"]
 
 [node name="Niveau00" type="Node"]
 
@@ -48,28 +51,32 @@ tile_set = ExtResource("6_xnlme")
 tile_map_data = PackedByteArray("AAD+/w0AAAALAAwAAAD//w0AAAALAAwAAAAAAA0AAAALAAwAAAABAA0AAAALAAwAAAACAA0AAAALAAwAAAADAA0AAAALAAwAAAAEAA0AAAALAAwAAAAFAA0AAAALAAwAAAAGAA0AAAALAAwAAAAHAA0AAAALAAwAAAAIAA0AAAALAAwAAAAJAA0AAAALAAwAAAAKAA0AAAALAAwAAAALAA0AAAALAAwAAAAMAA0AAAALAAwAAAANAA0AAAALAAwAAAAOAA0AAAALAAwAAAD+/wwAAAALAAsAAAD//wwAAAALAAsAAAAAAAwAAAALAAsAAAABAAwAAAALAAsAAAACAAwAAAALAAsAAAADAAwAAAALAAsAAAAEAAwAAAALAAsAAAAFAAwAAAALAAsAAAAGAAwAAAALAAsAAAAHAAwAAAALAAsAAAAIAAwAAAALAAsAAAAJAAwAAAALAAsAAAAKAAwAAAALAAsAAAALAAwAAAALAAsAAAAMAAwAAAALAAsAAAANAAwAAAALAAsAAAAOAAwAAAALAAsAAAAOAAUAAAALAAIAAAAJAAgAAAAPAA0AAAD//wkAAAAPAA0AAAAPAAUAAAAPAA0AAAAPAAwAAAALAAsAAAAPAA0AAAALAAwAAAAQAAwAAAALAAsAAAAQAA0AAAALAAwAAAARAAwAAAALAAsAAAARAA0AAAALAAwAAAASAAwAAAALAAsAAAASAA0AAAALAAwAAAATAAwAAAALAAsAAAATAA0AAAALAAwAAAAUAAwAAAALAAsAAAAUAA0AAAALAAwAAAAVAAwAAAALAAsAAAAVAA0AAAALAAwAAAAWAAwAAAALAAsAAAAWAA0AAAALAAwAAAAXAAwAAAALAAsAAAAXAA0AAAALAAwAAAAYAAwAAAALAAsAAAAYAA0AAAALAAwAAAAZAAwAAAALAAsAAAAZAA0AAAALAAwAAAAaAAwAAAALAAsAAAAaAA0AAAALAAwAAAD7/wwAAAALAAsAAAD7/w0AAAALAAwAAAD8/wwAAAALAAsAAAD8/w0AAAALAAwAAAD9/wwAAAALAAsAAAD9/w0AAAALAAwAAAD4/wwAAAALAAsAAAD4/w0AAAALAAwAAAD5/wwAAAALAAsAAAD5/w0AAAALAAwAAAD6/wwAAAALAAsAAAD6/w0AAAALAAwAAAA=")
 tile_set = ExtResource("6_xnlme")
 
-[node name="Obstacle" parent="." groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
+[node name="obstacles" type="Node2D" parent="."]
+
+[node name="Obstacle" parent="obstacles" groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
 position = Vector2(384, 544)
 
-[node name="Obstacle3" parent="." groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
+[node name="Obstacle3" parent="obstacles" groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
 position = Vector2(384, 480)
 
-[node name="Obstacle4" parent="." groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
+[node name="Obstacle4" parent="obstacles" groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
 position = Vector2(448, 456)
 
-[node name="Obstacle5" parent="." groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
+[node name="Obstacle5" parent="obstacles" groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
 position = Vector2(512, 480)
 
-[node name="Obstacle7" parent="." groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
+[node name="Obstacle7" parent="obstacles" groups=["cle_bleu"] instance=ExtResource("12_mmh6l")]
 position = Vector2(512, 544)
 
-[node name="Monnaie" parent="." instance=ExtResource("10_8vkqi")]
+[node name="monnaie" type="Node2D" parent="."]
+
+[node name="Monnaie" parent="monnaie" instance=ExtResource("10_8vkqi")]
 position = Vector2(707, 308)
 
-[node name="Monnaie2" parent="." instance=ExtResource("10_8vkqi")]
+[node name="Monnaie2" parent="monnaie" instance=ExtResource("10_8vkqi")]
 position = Vector2(123, 75)
 
-[node name="Monnaie3" parent="." instance=ExtResource("10_8vkqi")]
+[node name="Monnaie3" parent="monnaie" instance=ExtResource("10_8vkqi")]
 position = Vector2(219, 723)
 
 [node name="Joueur" parent="." instance=ExtResource("8_oeuwp")]
@@ -91,5 +98,11 @@ script = ExtResource("9_m40i3")
 [node name="KeyBlue" parent="." groups=["cle_bleu"] instance=ExtResource("12_ao7hb")]
 position = Vector2(0, 568)
 groupe_cle = "cle_bleu"
+
+[node name="Killzone" parent="." instance=ExtResource("13_ao7hb")]
+position = Vector2(-456, 874)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Killzone"]
+shape = SubResource("WorldBoundaryShape2D_tionb")
 
 [connection signal="body_entered" from="PorteNiveau" to="PorteNiveau" method="_on_body_entered"]

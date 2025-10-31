@@ -41,3 +41,10 @@ func _on_show_instructions_button_pressed() -> void:
 func _on_close_instructions_button_pressed() -> void:
 	%InstructionsScreen.hide()
 	%ShowInstructionsButton.grab_focus.call_deferred()
+
+
+func _on_button_button_down() -> void:
+	# Restart the whole game by loading the main scene (deferred to be safe)
+	get_tree().paused = false
+	# Use deferred call to avoid changing scene during signal processing
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/main.tscn")
